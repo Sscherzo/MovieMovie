@@ -9,13 +9,9 @@
 
 # Contents
 1.[로딩화면](#로딩화면)
-
 2.[SMS_발송](#sms_발송)
-
 3.[이용약관](#이용약관)
-
 4.[로그인_유지](#로그인_유지)
-
 5.[영화_API](#영화_api)
 
 # 로딩화면
@@ -59,7 +55,7 @@
 ```
 
  해쉬코드를 생성해 4자리로 잘라내고 SmsManger에서 해쉬코드를 담아 SMS를 보낸뒤
- 입력값과 의 내용을 비교해서 인증을 완료합니다.
+ 입력값과 sms의 내용을 비교해서 인증을 완료합니다.
 
 [:arrow_up: 목차로](#contents)
 
@@ -71,7 +67,6 @@
 listView.setAdapter(adapter);
 listView.setOnScrollListener(this);
 
-// -- 스크롤 상태에 따른 버튼 상태
 public void onScrollStateChanged(AbsListView view, int scrollState) {
         if(scrollState == SCROLL_STATE_IDLE) {
             buttonList.setVisibility(View.VISIBLE);
@@ -111,6 +106,35 @@ SharedPreferences를 사용해 내부적으로 아이디와 패스워드를 저�
 [:arrow_up: 목차로](#contents)
 
 # 영화_API
+
+![ezgif com-gif-maker (5)](https://user-images.githubusercontent.com/90139096/210389067-7a4346f3-2749-4f77-85ee-7c8a13e6a7db.gif)
+
+
+```java
+
+AsyncHttpClient client;
+
+// 박스오피스 가져오기
+    public class FilmResponse extends AsyncHttpResponseHandler {
+        @Override
+        public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+            String str = new String(responseBody);
+            try {
+                JSONObject json = new JSONObject(str);
+                JSONObject boxOfficeResult = json.getJSONObject("boxOfficeResult");
+                JSONArray dailyBoxOfficeList = boxOfficeResult.getJSONArray("dailyBoxOfficeList");
+
+                JSONObject temp = dailyBoxOfficeList.getJSONObject(9);
+                box9 = new Box();
+                box9.setRank(temp.getString("rank"));
+                box9.setMovieNm(temp.getString("movieNm"));
+                box9.setOpenDt("개봉일 : " + temp.getString("openDt"));
+                box9.setAudiAcc("누적관객수 : " + temp.getString("audiAcc") + "명");
+
+```
+
+AsyncHttpClient를 사용, 비동기 통신을 통해 API를 사용하고 JSON으로 값을 가져왔습니다. 사용한 API는 영화진흥위원회 오픈 API와 한국영화데이터베이스 API를
+사용했습니다. 서로 다른 API를 사용한 이유는 영화진흥 위원회는 박스 오피스나 개봉 예정작등을 알려주지만 영화의 Poster를 제공하지 않습니다. 따라서 한국영화데이터베이스에서 제공하는 API를 사용해 Poster를 가져왔습니다.
 
 
 [:arrow_up: 목차로](#contents)
