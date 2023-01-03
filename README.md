@@ -134,6 +134,17 @@ AsyncHttpClient client;
                 box9.setMovieNm(temp.getString("movieNm"));
                 box9.setOpenDt("개봉일 : " + temp.getString("openDt"));
                 box9.setAudiAcc("누적관객수 : " + temp.getString("audiAcc") + "명");
+                
+                String url9 = "http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2";
+                RequestParams params9 = new RequestParams();
+                params9.put("ServiceKey", ".......");
+                params9.put("title", temp.getString("movieNm"));
+                params9.put("sort", "title,0");
+                params9.put("releaseDts", releaseDts);
+
+                client.get(url9, params9, movieResponse9);
+                
+                
 
 ```
 
