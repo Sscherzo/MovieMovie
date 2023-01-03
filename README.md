@@ -71,6 +71,7 @@
 listView.setAdapter(adapter);
 listView.setOnScrollListener(this);
 
+// -- 스크롤 상태에 따른 버튼 상태
 public void onScrollStateChanged(AbsListView view, int scrollState) {
         if(scrollState == SCROLL_STATE_IDLE) {
             buttonList.setVisibility(View.VISIBLE);
