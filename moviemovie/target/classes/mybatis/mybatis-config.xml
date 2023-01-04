@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!-- 클래스에 별명 짓기 -->
+	<typeAliases>
+		<typeAlias type="member.bean.MemberDTO" alias="memberDTO"/>
+		<typeAlias type="memberfiles.bean.MemberfilesDTO" alias="memberfilesDTO"/>
+		<typeAlias type="review.bean.ReviewDTO" alias="reviewDTO"/>
+		<typeAlias type="reviewfiles.bean.ReviewFilesDTO" alias="reviewfilesDTO"/>
+		<typeAlias type="reviewurl.bean.ReviewUrlDTO" alias="reviewurlDTO"/>
+		<typeAlias type="notice.bean.NoticeDTO" alias="noticeDTO"/>
+		<typeAlias type="faq.bean.FaqDTO" alias="faqDTO"/>
+		<typeAlias type="genre.bean.GenreDTO" alias="genreDTO"/>
+	</typeAliases>
+	
+ 	<!-- sql mapper 설정 -->
+	<mappers>
+		<mapper resource="mybatis/member-mapping.xml" />
+		<mapper resource="mybatis/memberfiles-mapping.xml" />
+		<mapper resource="mybatis/review-mapping.xml"/>
+		<mapper resource="mybatis/reviewfiles-mapping.xml"/>
+		<mapper resource="mybatis/reviewurl-mapping.xml"/>
+		<mapper resource="mybatis/notice-mapping.xml" />
+		<mapper resource="mybatis/faq-mapping.xml" />
+	</mappers>
+	
+</configuration>
