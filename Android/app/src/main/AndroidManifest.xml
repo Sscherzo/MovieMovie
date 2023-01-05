@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.moviemovie">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_NUMBERS" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+    <application
+        android:name=".kakao.GlobalApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/moviemovie_icon3"
+        android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
+        android:roundIcon="@drawable/moviemovie_icon3"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".information.FilmActivity"></activity>
+        <activity android:name=".signup.GenreActivity" />
+        <activity android:name=".admin.AdminModifyActivity" />
+        <activity
+            android:name=".admin.AdminDeleteActivity"
+            android:theme="@style/Theme.MyDialog" />
+        <activity android:name=".admin.AdminReadActivity" />
+        <activity android:name=".admin.AdminWriteActivity" />
+        <activity android:name=".admin.AdminMemberActivity" />
+        <activity android:name=".admin.AdminNoticeActivity" />
+        <activity android:name=".cs.CSActivity" />
+        <activity
+            android:name=".cs.notice.NoticeDetailActivity"
+            android:theme="@style/Theme.MyDialog" />
+        <activity
+            android:name=".admin.AdminActivity"
+            android:theme="@style/Theme.MyDialog_transparent" />
+        <activity android:name=".review.ReviewDetailActivity" />
+        <activity
+            android:name=".review.ReviewDeleteActivity"
+            android:theme="@style/Theme.MyDialog" />
+        <activity android:name=".review.ReviewModifyActivity" />
+        <activity android:name=".review.MovieActivity" />
+        <activity android:name=".review.SearchActivity" />
+        <activity android:name=".review.ReviewWriteActivity" />
+        <activity
+            android:name=".review.TicketActivity"
+            android:theme="@style/Theme.MyDialog" />
+        <activity android:name=".calendar.CalendarActivity" />
+        <activity
+            android:name=".DeleteActivity"
+            android:theme="@style/Theme.MyDialog" />
+        <activity
+            android:name=".signup.CheckIDActivity"
+            android:theme="@style/Theme.MyDialog" />
+        <activity
+            android:name=".find.FindPWActivity"
+            android:theme="@style/Theme.MyDialog" />
+        <activity
+            android:name=".find.FindIDActivity"
+            android:theme="@style/Theme.MyDialog" />
+        <activity android:name=".modify.ModifyPWActivity" />
+        <activity android:name=".find.FindActivity" />
+        <activity android:name=".SettingActivity" />
+        <activity android:name=".modify.ModifyActivity" />
+        <activity android:name=".signup.TermsList3" />
+        <activity android:name=".signup.TermsList2" />
+        <activity android:name=".signup.TermsList1" />
+        <activity android:name=".signup.Terms" />
+        <activity android:name=".signup.SignUpActivity" />
+        <activity android:name=".LoadingActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <receiver
+            android:name=".signup.SmsReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+            </intent-filter>
+        </receiver>
+
+        <meta-data
+            android:name="com.kakao.sdk.AppKey"
+            android:value="@string/kakao_app_key" />
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+    </application>
+
+</manifest>
