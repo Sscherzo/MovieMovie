@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.memberfilesMapper">
+
+   <select id="getMemberFirstSeq" resultType="int">
+      select max(seq) as seq from memberfiles
+   </select>
+   
+   <insert id="filesWrite" parameterType="memberfilesDTO">
+      insert into memberfiles values 
+      (seq_memfiles.nextval, #{mem_seq}, #{dir}, #{filename}, 
+      #{originname}, #{filesize}, #{filetype}, sysdate)
+   </insert>
+   
+   <select id="checkFiles" parameterType="int" resultType="String">
+      select filename from memberfiles where mem_seq=#{mem_seq}
+   </select>
+   
+   <delete id="filesDelete" parameterType="int">
+      delete from memberfiles where mem_seq=#{mem_seq}
+   </delete>
+   
+</mapper>

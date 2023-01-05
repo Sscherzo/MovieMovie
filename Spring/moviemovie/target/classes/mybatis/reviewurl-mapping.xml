@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.reviewurlMapper">
+   <select id="getReviewUrlFirstSeq" resultType="int">
+      select max(seq) as seq from review
+   </select>
+   <insert id="urlWrite" parameterType="reviewUrlDTO">
+      insert into reviewurl values 
+      (seq_reviewurl.nextval, #{review_seq}, #{imageUrl}, sysdate)
+   </insert>
+   <select id="checkUrl" parameterType="int" resultType="String">
+      select imageUrl from reviewurl where review_seq=#{review_seq}
+   </select>
+   <delete id="urlDelete" parameterType="int">
+      delete from reviewurl where review_seq=#{review_seq}
+   </delete>
+</mapper>

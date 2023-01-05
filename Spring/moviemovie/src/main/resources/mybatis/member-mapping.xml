@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.memberMapper">
+
+	<!-- 회원 관리 -->
+	<insert id="memberWrite" parameterType="memberDTO">
+		insert into member values
+		(seq_mem.nextval, #{id}, #{pw}, #{nickname}, #{name}, #{email}, #{tel}, 'X', sysdate)
+	</insert>
+
+	<update id="memberModify" parameterType="memberDTO">
+		update member set 
+		nickname=#{nickname},email=#{email},tel=#{tel},img=#{img} 
+		where id=#{id} and pw=#{pw}
+	</update>
+	
+	<select id="memberLogin" parameterType="java.util.Map" resultType="String">
+		select * from member where id=#{id} and pw=#{pw}
+	</select>
+	
+	<delete id="memberDelete" parameterType="java.util.Map">
+		delete member where seq=#{seq} and pw=#{pw}
+	</delete>
+	
+	<select id="memberList" resultType="memberDTO">
+ 		select * from member order by seq desc
+ 	</select>
+	
+	<select id="getMember" parameterType="String" resultType="memberDTO">
+		select * from member where id=#{id}
+	</select>
+ 	
+	<select id="checkId" parameterType="String" resultType="String">
+		select * from member where id=#{id}
+	</select>
+	
+	<select id="findId" parameterType="java.util.Map" resultType="String">
+		select id from member where name=#{name} and tel=#{tel}
+	</select>
+	
+	<select id="findPw" parameterType="java.util.Map" resultType="String">
+        select pw from member where name=#{name} and id=#{id} and tel=#{tel}
+    </select>
+    
+    <update id="pwModify" parameterType="java.util.Map">
+		update member set pw=#{pw} where id=#{id}
+	</update>
+	
+	
+	<!-- 장르 관리 -->
+	<insert id="genreWrite" parameterType="genreDTO">
+		insert into genre values(#{id},0,0,0,0,0,0,0,0,0,0,0,0,0)
+	</insert>
+	
+	 <select id="genreSelect" parameterType="String" resultType="genreDTO">
+		select * from genre where id=#{id}
+	</select> 
+	
+	<update id="genreModify" parameterType="genreDTO">
+		update genre set 
+		fantasy=#{fantasy}, horror=#{horror}, mellow=#{mellow},
+		kid=#{kid}, drama=#{drama}, comedy=#{comedy},
+		crime=#{crime}, character=#{character}, musical=#{musical}, action=#{action}, 
+		sf=#{sf}, war=#{war}, etc=#{etc}
+		where id=#{id}
+	</update>
+	
+	<delete id="genreDelete" parameterType="String">
+		delete from genre where id=#{id}
+	</delete>
+</mapper>

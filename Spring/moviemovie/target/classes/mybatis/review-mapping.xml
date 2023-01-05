@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.reviewMapper">
+	<!-- 데이터 저장 : insert --> 
+   <insert id="reviewWrite" parameterType="reviewDTO">
+		insert into review values 
+		(seq_review.nextval, #{rate}, #{title}, #{director}, #{playdate}, #{runtime}, 
+		#{genre}, #{actor}, #{plot}, #{watch}, #{place}, #{review}, sysdate, sysdate, #{id})
+   </insert>
+   
+   <!-- 데이터 삭제 : delete --> 
+   <delete id="reviewDelete" parameterType="java.util.Map">
+   		delete from review where seq=#{seq} and id=#{id}
+   </delete>
+   
+   <!-- 데이터 수정 : update --> 
+   <update id="reviewModify" parameterType="reviewDTO">
+		update review set
+		rate=#{rate}, watch=#{watch}, place=#{place},
+		review=#{review}, edit_date=sysdate
+		where seq=#{seq} and id=#{id}
+   </update>
+   
+   <!-- 목록 보기 : : select -->
+   <select id="reviewList" parameterType="String" resultType="reviewDTO">
+	   select * from review where id=#{id} order by seq desc
+   </select>
+   
+   <!-- 목록 보기 : : select -->
+   <select id="reviewWatchList" parameterType="java.util.Map" resultType="reviewDTO">
+   		select * from review where id=#{id} and watch=#{watch}
+   </select>
+   
+   <!-- 상세 보기 : select -->
+   <select id="reviewSelect" parameterType="java.util.Map" resultType="reviewDTO">
+		select * from review where seq=#{seq} and id=#{id}
+   </select>
+   
+   <!-- 총 글 수 구하기 : select --> 
+   <select id="getTotalCnt" parameterType="String"  resultType="int">
+   		select count(*) as cnt from review where id=#{id}
+   </select>
+   
+   <!-- 총 관람 시간 구하기 : select --> 
+   <select id="getTotalRunTime" parameterType="String" resultType="String">
+   		select sum(runtime) from review where id=#{id}
+   </select>
+   
+      <!-- 관람일의 글 수 구하기 : select --> 
+   <select id="getWatchCnt" parameterType="java.util.Map"  resultType="int">
+   		select count(*) as cnt from review where id=#{id} and watch=#{watch}
+   </select>
+</mapper>
