@@ -5,7 +5,7 @@
 팀 프로젝트 내에서 작성자가 한 부분만을 간략하게 설명하고 있습니다.
 
 # Demonstration Video
-[![Video Label](http://img.youtube.com/vi/8oJThbflak0/0.jpg)](https://youtu.be/8oJThbflak0) ← 옆의 동영상을 클릭해주세요.
+[![Video Label](http://img.youtube.com/vi/8oJThbflak0/0.jpg)](https://youtu.be/8oJThbflak0) ← 옆의 사진을 클릭해주세요.
 
 # Contents
 1.[로딩화면](#로딩화면)
